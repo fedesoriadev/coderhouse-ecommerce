@@ -1,5 +1,12 @@
 // Override default variables before the import
 $primary: #51423D;
+$secondary: #C5B09D;
 
 // Import Bootstrap and its default variables
 @import '~bootstrap/scss/bootstrap.scss';
+@import '~bootstrap-icons/font/bootstrap-icons.css';
+
+body {
+    min-height: 75rem;
+    padding-top: 7.5rem;
+}
