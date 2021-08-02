@@ -1,7 +1,7 @@
 import logo from '../resources/img/logo.svg'
 import CartWidget from './CartWidget.js'
 
-const NavBar = () => 
+const NavBar = ({itemsOnCart}) => 
     <nav className="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
         <div className="container-fluid">
             <a className="navbar-brand" href="#">
@@ -24,7 +24,7 @@ const NavBar = () =>
                     </li>
                 </ul>
             </div>
-            <CartWidget itemsOnCart={3} />
+            <CartWidget itemsOnCart={itemsOnCart} />
             <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
             </button>
