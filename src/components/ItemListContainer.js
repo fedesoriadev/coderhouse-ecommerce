@@ -1,27 +1,31 @@
-import ItemCount from "./ItemCount"
+import { useState } from "react";
+import ItemList from "./ItemList"
 
-const ItemListContainer = ({greeting, onAdd}) => {
+const ItemListContainer = ({onAdd}) => {
     const addToCart = (count) => {
         onAdd(count)
     }
 
+    const [products, setProducts] = useState()
+
+    const getProducts = new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const products = [
+                {id: 'VZkzbiVofu', title: 'Café molido', price: 850, pictureUrl: 'https://dummyimage.com/280x180/0CA5B0/fff', description: 'Fuerte aroma desde Colomba', stock: 3},
+                {id: 'OpHRq3pb7E', title: 'Café en granos', price: 1050, pictureUrl: 'https://dummyimage.com/280x180/51423D/fff', description: 'Granos suaves de Italia', stock: 5},
+                {id: 'bFzuoUXGiS', title: 'Café instantáneo', price: 120, pictureUrl: 'https://dummyimage.com/280x180/A5B3AA/fff', description: 'Café La Virginia', stock: 10},
+            ]
+
+            resolve(products)
+        }, 2000)
+    })
+
+    getProducts.then(products => setProducts(products))
+
     return (
         <main className="container">
             <div className="bg-light p-5 rounded">
-                <h1>{greeting}</h1>
-
-                <div className="row justify-content-md-center">
-                    <div className="col-3">
-                        <div className="card">
-                            <img src="https://dummyimage.com/280x180/51423D/fff" className="card-img-top" />
-                            <div className="card-body">
-                                <h5 className="card-title">Café molido</h5>
-                                <p className="card-text">Café premium de Colombia sin torrar.</p>
-                                <ItemCount stock={5} initial={1} onAdd={addToCart} />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <ItemList items={products} addToCart={addToCart} />
             </div>        
         </main>
     )
