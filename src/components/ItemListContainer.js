@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import ItemList from "./ItemList"
-import {productsFromDB} from "../fixtures/products"
 
 const ItemListContainer = ({onAdd}) => {
     const addToCart = (count) => {
@@ -10,14 +9,11 @@ const ItemListContainer = ({onAdd}) => {
     const [products, setProducts] = useState([])
   
     useEffect(() => {
-        const getProducts = new Promise((resolve, reject) => {
-            setTimeout(() => {
-                
-                resolve(productsFromDB)
-            }, 2000)
-        })
-
-        getProducts.then(products => setProducts(products))
+        // Muevo el array de productos a un mock en la nube para probar fetch()
+        // No tiene sentido poner esta lógica en una function getItems
+        fetch('https://run.mocky.io/v3/723312d7-5b4a-4d4e-8409-b03938520b95')
+            .then(response => response.json())
+            .then(products => setProducts(products))
     }, [])    
 
     return (

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import NavBar from './NavBar';
 import ItemListContainer from './ItemListContainer'
+import ItemDetailContainer from './ItemDetailContainer'
 
 const App = () => {
     const [itemsOnCart, setItemOnCart] = useState(0)
@@ -12,7 +13,8 @@ const App = () => {
     return (
         <>
             <NavBar itemsOnCart={itemsOnCart} />
-            <ItemListContainer onAdd={addToCart} />
+            {/* <ItemListContainer onAdd={addToCart} /> */}
+            <ItemDetailContainer onAdd={addToCart} />
         </>
     )
 }
