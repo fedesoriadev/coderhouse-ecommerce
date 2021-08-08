@@ -4,7 +4,7 @@ const ItemList = ({items, addToCart}) => {
 
     return (
         <div className="row justify-content-md-center">
-            { items ? 
+            { items && items.length ? 
                 items.map(item => {
                     return (
                         <div className="col-3">
