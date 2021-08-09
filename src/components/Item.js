@@ -1,13 +1,15 @@
-import ItemCount from "./ItemCount"
+import { Link } from "react-router-dom"
 
-const Item = ({item, addToCart}) => 
-    <div className="card">
-        <img src={item.pictureUrl} className="card-img-top" alt="" />
+const Item = ({item}) => 
+    <div className="card mb-2">
+        <Link to={'/item/' + item.id}>
+            <img src={'/img/products/' + item.image} className="card-img-top" alt="" />
+        </Link>
         <div className="card-body">
-            <h5 className="card-title">{item.title}</h5>
-            <h6>${item.price}</h6>
-            <p className="card-text">{item.description}</p>
-            <ItemCount stock={item.stock} initial={1} onAdd={addToCart} />
+            <h3 className="card-title">
+                <Link to={'/item/' + item.id} className="text-decoration-none">${item.price}</Link>
+            </h3>
+            <h4><Link to={'/item/' + item.id} className="text-decoration-none">{item.title}</Link></h4>
         </div>
     </div>
 

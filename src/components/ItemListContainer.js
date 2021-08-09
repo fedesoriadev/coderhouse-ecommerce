@@ -1,25 +1,29 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router";
 import ItemList from "./ItemList"
+import Loader from "./Loader";
 
-const ItemListContainer = ({onAdd}) => {
-    const addToCart = (count) => {
-        onAdd(count)
-    }
+const ItemListContainer = () => {   
+    const params = useParams()
 
-    const [products, setProducts] = useState([])
-  
+    const [items, setItems] = useState([])
+
     useEffect(() => {
-        // Muevo el array de productos a un mock en la nube para probar fetch()
-        // No tiene sentido poner esta lógica en una function getItems
-        fetch('https://run.mocky.io/v3/723312d7-5b4a-4d4e-8409-b03938520b95')
-            .then(response => response.json())
-            .then(products => setProducts(products))
-    }, [])    
+        if (params.categoryId) {
+            fetch('/api/categories/' + params.categoryId + '/items')
+                .then(response => response.json())
+                .then(categoryItems => setItems(categoryItems.items))
+        } else {
+            fetch('/api/items/')
+                .then(response => response.json())
+                .then(items => setItems(items.items))
+        }
+    }, [params.categoryId])
 
     return (
         <main className="container">
             <div className="bg-light p-5 rounded">
-                <ItemList items={products} addToCart={addToCart} />
+                {items.length ? <ItemList items={items} /> : <Loader />}
             </div>        
         </main>
     )
