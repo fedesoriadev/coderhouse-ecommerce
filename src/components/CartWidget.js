@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 
-const CartWidget = ({itemsOnCart}) =>
+const CartWidget = ({itemsOnCart = 1}) =>
     <Link to="/cart">
         <button className="btn btn-secondary position-relative">
             <i className="bi bi-cart2"></i>
