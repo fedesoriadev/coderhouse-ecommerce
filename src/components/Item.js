@@ -2,7 +2,7 @@ import { Link } from "react-router-dom"
 
 const Item = ({item}) => 
     <div className="card h-100 text-center">
-        <span class="badge bg-primary text-white position-absolute tag-intensity">{item.intensity}</span>
+        <span className="badge bg-primary text-white position-absolute tag-intensity">{item.intensity}</span>
         <Link to={'/item/' + item.id}>
             <img src={'/img/products/' + item.image} className="card-img-top" alt="" />
         </Link>

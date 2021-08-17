@@ -4,7 +4,7 @@ const mockApi = () => {
   createServer({
     models: {
       category: Model.extend({
-        items: hasMany(),
+        items: hasMany()
       }),
       item: Model.extend({
         category: belongsTo(),
