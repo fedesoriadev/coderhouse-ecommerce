@@ -30,8 +30,14 @@ const CartContext = ({children}) => {
         return !! items.filter(item => item.id === itemId).length
     }
 
+    const cartPrice = () => {
+        return items.reduce((suma, item) => {
+            return suma + (item.price * item.count)
+        }, 0)
+    }
+
     return (
-        <Provider value={{ items, cartCount, addItem, removeItem, clear, isInCart }}>
+        <Provider value={{ items, cartCount, addItem, removeItem, clear, isInCart, cartPrice }}>
             {children}
         </Provider>
     )

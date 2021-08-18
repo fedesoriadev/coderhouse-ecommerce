@@ -1,13 +1,31 @@
 import { useContext } from "react"
 import { cartContext } from "./CartContext"
-import CartItem from "./CartItem"
+import CartItem from "./Cart"
 import Hero from "./Hero"
+import { Link } from "react-router-dom"
 
 const CartContainer = () => {
     const context = useContext(cartContext)
 
     const clear = () => {
         context.clear()
+    }
+
+    const cartPrice = context.cartPrice()
+
+    if (!context.items.length) {
+        return (
+            <main className="container">
+                <div className="row mt-5">
+                    <div className="col-md-6 mx-auto">
+                        <div className="card p-5 text-center">
+                            <h4 className="mb-5">No hay productos en el carrito.</h4>
+                            <Link to="/" className="btn btn-outline-primary">Vamos a elegir un café!</Link>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        )
     }
 
     return (
@@ -36,8 +54,9 @@ const CartContainer = () => {
                         </div>                    
                     </div>
                     <div className="col-lg-4">
-                        <div className="card p-4">
-                            <p>Resumen</p>
+                        <div className="card">
+                            <h5 className="card-header">Resumen</h5>
+                            <div className="card-body">Total: <strong>${cartPrice}</strong></div>
                         </div>
                     </div>
                 </div>
