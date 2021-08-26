@@ -15,18 +15,7 @@ const CartWidget = () => {
                         {context.cartCount}
                     </span>
                 </button>
-            </Link>
-            {/*
-            // Comento para ajustarme al desafío y para luego estilar correctamente un dropdown rápido
-            // de productos en el carrito.
-            <ul>
-                {
-                    context.items.length ? context.items.map(item => {
-                        return (<li key={item.id}>{item.title}</li>)
-                    }) : ''
-                }
-            </ul>
-            */}         
+            </Link>       
         </>
     )
 }

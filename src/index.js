@@ -1,11 +1,8 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import './resources/sass/main.scss'
-import mockApi from './mockApi'
 import App from './components/App'
 import reportWebVitals from './reportWebVitals'
-
-mockApi()
 
 ReactDOM.render(
   <React.StrictMode>

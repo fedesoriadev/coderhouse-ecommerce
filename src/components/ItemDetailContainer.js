@@ -1,20 +1,24 @@
+import { firestore } from "../firebase";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import ItemDetail from "./ItemDetail";
 import Loader from "./Loader";
 
 const ItemDetailContainer = () => {
-    const params = useParams()
+    const { id } = useParams()
 
     const [item, setItem] = useState()
   
     useEffect(() => {
-        if (params.id) {
-            fetch('/api/items/' + params.id)
-                .then(response => response.json())
-                .then(item => setItem(item.item))
+        if (id) {
+            firestore.collection('items')
+                .doc(id)
+                .get()
+                .then(query => {
+                    setItem({ id: id, ...query.data() })
+                })
         }
-    }, [params.id])    
+    }, [id])    
 
     return (
         <main>

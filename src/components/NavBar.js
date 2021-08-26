@@ -1,3 +1,4 @@
+import { firestore } from '../firebase'
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import logo from '../resources/img/logo.svg'
@@ -8,9 +9,19 @@ const NavBar = () => {
     const [categories, setCategories] = useState([])
 
     useEffect(() => {
-        fetch('/api/categories')
-            .then(response => response.json())
-            .then(categories => setCategories(categories.categories))
+        firestore.collection('categories')
+            .get()
+            .then(query => {
+                if (query.empty) {
+                    console.log('No categories found!', query)
+                }
+
+                setCategories(query.docs.map(category => {
+                    return {id: category.id, ...category.data()}
+                }))
+            }).catch(error => {
+                console.warn('Error searching categories: ', error)
+            })        
     }, [])
 
     return (
