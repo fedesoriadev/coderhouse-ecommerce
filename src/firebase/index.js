@@ -12,4 +12,6 @@ const firebaseConfig = {
 
 const app = firebase.initializeApp(firebaseConfig)
 
+export const Timestamp = firebase.firestore.Timestamp
+
 export const firestore = app.firestore()
