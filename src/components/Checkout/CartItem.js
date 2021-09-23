@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { cartContext } from "./CartContext"
+import { cartContext } from "../../contexts/CartContext"
 import { Link } from "react-router-dom"
 
 const CartItem = ({ item }) => {
@@ -17,7 +17,7 @@ const CartItem = ({ item }) => {
                 </Link>
             </td>
             <td width="50%"><Link to={'/item/' + item.id}>{item.title}</Link></td>
-            <td>${item.price}</td>
+            <td>${item.price.toLocaleString()}</td>
             <td>{item.count}</td>
             <td>
                 <button onClick={removeItem} className="btn" title="Remover del carrito">

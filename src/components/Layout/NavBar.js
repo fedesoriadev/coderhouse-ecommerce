@@ -1,12 +1,17 @@
-import { firestore } from '../firebase'
+import { firestore } from '../../services/firebase'
 import { useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
-import logo from '../resources/img/logo.svg'
+import logo from '../../resources/img/logo.svg'
 import CartWidget from './CartWidget.js'
 
 const NavBar = () => {
 
     const [categories, setCategories] = useState([])
+
+    const [showNavbar, setShowNavbar] = useState(false)
+
+
+    const toggleNavbar = () => setShowNavbar(!showNavbar)
 
     useEffect(() => {
         firestore.collection('categories')
@@ -30,25 +35,31 @@ const NavBar = () => {
                 <NavLink to="/" className="navbar-brand">
                     <img src={logo} alt="" width="50" height="50" className="d-inline-block" />
                     Coffee Market
-                </NavLink>          
-                <div className="collapse navbar-collapse" id="navbarCollapse">
+                </NavLink>
+                
+                
+
+
+                <div className={`collapse navbar-collapse ${showNavbar ? 'show' : ''}`} id="navbarCollapse">
                     <ul className="navbar-nav me-auto mb-2 mb-md-0">
                         {
                             categories.length ? 
                                 categories.map(category => {
                                     return (
                                         <li key={'category-' + category.id} className="nav-item">
-                                            <NavLink to={'/category/' + category.id} className="nav-link">{category.name}</NavLink>
+                                            <NavLink to={'/category/' + category.slug} className="nav-link">{category.name}</NavLink>
                                         </li>
                                     )
                                 }) : ''
                         }
                     </ul>
                 </div>
+
                 <CartWidget />
-                <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+
+                <button onClick={toggleNavbar} className="navbar-toggler" type="button" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
-                </button>
+                </button>             
             </div>
         </nav>
     )

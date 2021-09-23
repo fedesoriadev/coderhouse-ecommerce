@@ -33,11 +33,13 @@ const CartContext = ({children}) => {
     const cartPrice = () => {
         return items.reduce((suma, item) => {
             return suma + (item.price * item.count)
-        }, 0)
+        }, 0).toLocaleString()
     }
 
+    const cartIsEmpty = () => !items.length
+
     return (
-        <Provider value={{ items, cartCount, addItem, removeItem, clear, isInCart, cartPrice }}>
+        <Provider value={{ items, cartCount, addItem, removeItem, clear, isInCart, cartPrice, cartIsEmpty }}>
             {children}
         </Provider>
     )

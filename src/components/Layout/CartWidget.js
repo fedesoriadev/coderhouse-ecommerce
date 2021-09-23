@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { cartContext } from './CartContext'
+import { cartContext } from '../../contexts/CartContext'
 import { Link } from "react-router-dom"
 
 const CartWidget = () => {
@@ -7,7 +7,7 @@ const CartWidget = () => {
 
     return (
         <>
-            <Link to="/cart">
+            <Link to="/cart" className="ms-auto me-3">
                 <button className="btn btn-secondary position-relative">
                     <i className="bi bi-cart2"></i>
                     <span style={{display: (context.cartCount) ? 'inline' : 'none'}} 

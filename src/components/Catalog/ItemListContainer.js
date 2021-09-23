@@ -1,28 +1,28 @@
-import { firestore } from "../firebase";
+import { firestore } from "../../services/firebase";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
-import Hero from "./Hero";
 import ItemList from "./ItemList"
-import Loader from "./Loader";
+import Loader from "../Layout/Loader";
+import PageNotFound from "../Pages/PageNotFound";
 
 const ItemListContainer = () => {   
     const { categoryId } = useParams()
 
     const [items, setItems] = useState([])
 
+    const [categoryNotFound, setCategoryNotFound] = useState(false)
+
     useEffect(() => {
         let itemsCollection = firestore.collection('items')
 
         if (categoryId) {
-            itemsCollection = itemsCollection.where('categoryId', '==', parseFloat(categoryId))
+            itemsCollection = itemsCollection.where('category', '==', categoryId)
         }
 
         itemsCollection
             .get()
             .then(query => {
-                if (query.empty) {
-                    console.log('No items found!', query)
-                }
+                setCategoryNotFound(query.empty)
 
                 setItems(query.docs.map(item => {
                     return {id: item.id, ...item.data()}
@@ -32,10 +32,14 @@ const ItemListContainer = () => {
             })
     }, [categoryId])
 
+
+    if (categoryNotFound) {
+        return <PageNotFound />
+    }
+
     return (
         <main>
-            <Hero heading={ categoryId ? 'Categoría' : 'Coffee Market' } />
-            <section className="container px-4 px-lg-5 mt-5">
+            <section className="container px-4 px-lg-5">
                 {items.length ? <ItemList items={items} /> : <Loader />}
             </section>       
         </main>

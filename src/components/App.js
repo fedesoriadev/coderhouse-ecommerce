@@ -1,9 +1,11 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
-import CartContext from "./CartContext"
-import NavBar from './NavBar';
-import ItemListContainer from './ItemListContainer'
-import ItemDetailContainer from './ItemDetailContainer'
-import CartContainer from './CartContainer';
+import CartContext from "../contexts/CartContext"
+import NavBar from './Layout/NavBar';
+import ItemListContainer from './Catalog/ItemListContainer'
+import ItemDetailContainer from './Product/ItemDetailContainer'
+import CartContainer from './Checkout/CartContainer';
+import PageNotFound from './Pages/PageNotFound';
+import Footer from './Layout/Footer';
 
 const App = () => 
     <CartContext>
@@ -18,7 +20,11 @@ const App = () =>
                 <Route path="/item/:id" component={ItemDetailContainer} />
 
                 <Route path="/cart" component={CartContainer}/>
+
+                <Route component={PageNotFound}/>
             </Switch>
+
+            <Footer/>
         </BrowserRouter>
     </CartContext>
     

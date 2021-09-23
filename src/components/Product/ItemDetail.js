@@ -1,5 +1,5 @@
 import { useState, useContext } from "react"
-import { cartContext } from "./CartContext"
+import { cartContext } from "../../contexts/CartContext"
 import { Link } from "react-router-dom"
 import ItemCount from "./ItemCount"
 
@@ -27,11 +27,9 @@ const ItemDetail = ({item}) => {
                 </div>
                 <div className="col-md-6">
                     <div className="p-3 right-side">
-                        <div className="d-flex justify-content-between align-items-center">
-                            <h3>{item.title}</h3> <i className='bi bi-heart'></i>
-                        </div>
+                        <h1>{item.title}</h1>
 
-                        <h3>${item.price}</h3>
+                        <h2>${item.price.toLocaleString()}</h2>
                         
                         <div className="mt-2">
                             <p><strong>Intensidad: </strong>{item.intensity}</p>
@@ -43,7 +41,7 @@ const ItemDetail = ({item}) => {
 
                         <div className="mt-5"> 
                             { count 
-                                ? <Link to="/cart" className="btn btn-outline-primary mt-auto">Terminar mi compra</Link> 
+                                ? <Link to="/cart" className="btn btn-primary mt-auto">Terminar mi compra</Link> 
                                 : <ItemCount stock={item.stock} initial={1} onAdd={addItem} />
                             }
                         </div>

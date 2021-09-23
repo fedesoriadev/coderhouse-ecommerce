@@ -15,7 +15,7 @@ const Item = ({item}) =>
             </strong>
         </div>
         <div className="card-footer p-4 pt-0 border-top-0 bg-transparent">
-            <Link to={'/item/' + item.id} className="btn btn-outline-primary mt-auto">Comprar</Link>
+            <Link to={'/item/' + item.id} className="btn btn-primary mt-auto">Comprar</Link>
         </div>
     </div>
 

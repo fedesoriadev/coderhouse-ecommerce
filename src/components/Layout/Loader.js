@@ -1,5 +1,5 @@
 const Loader = () => 
-    <p className="text-center">
+    <p className="h3 text-center">
         <i className="bi bi-droplet-half"></i> <strong>Calentando el agua</strong>
     </p>
 
