@@ -3,42 +3,45 @@ import { useContext, useState } from "react"
 import { cartContext } from "../../contexts/CartContext"
 import OrderDetail from "./OrderDetail"
 import Checkout from "./Checkout"
+import CartEmpty from "../Cart/CartEmpty"
 
 const CheckoutContainer = () => {
+    const {cartIsEmpty, items, cartPrice} = useContext(cartContext)
 
-    const context = useContext(cartContext)
+    const [order, setOrder] = useState()
 
-    const [orderId, setOrderId] = useState()
-
-    const [userInfo, setUserInfo] = useState({})
-
-    const checkout = (userFormValues) => {
-        setUserInfo(userFormValues)
-        
+    const checkout = (userFormValues) => {    
         const order = {
             buyer: userFormValues,
-            items: context.items,
-            total: context.cartPrice(),
+            items: items,
+            total: cartPrice(),
             created: now()
         }
 
         firestore
             .collection('orders')
             .add(order)
-            .then(({ id }) => setOrderId(id))
+            .then(({ id }) => {
+                setOrder({id, ...order})
+            })
             .catch(error => console.warn('Error al crear orden: ', error))
+    }
+
+    if (cartIsEmpty()) {
+        return <CartEmpty />
     }
 
     return (
         <main>
             <section className="container">
                 <div className="row">
-                    <div className="col-6 mx-auto">
-                        { orderId &&<OrderDetail orderId={orderId} userInfo={userInfo} /> }
-
-                        <Checkout checkout={checkout} />
+                    <div className="col-sm-6 mx-auto">
+                    { order
+                        ? <OrderDetail order={order} /> 
+                        : <Checkout checkout={checkout} />
+                    }
                     </div>
-                </div>
+                </div>                
             </section>
         </main>
     )

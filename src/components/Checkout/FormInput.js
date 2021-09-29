@@ -1,4 +1,4 @@
-const FormInput = ({ name, label, value, error, handleChange, type = 'text', required = true }) =>
+const FormInput = ({ name, label, value, error, handleChange, type = 'text', required = true, disabled = false }) =>
     <>
         <label htmlFor={name} className="form-label">{label}</label>
         <input 
@@ -8,6 +8,7 @@ const FormInput = ({ name, label, value, error, handleChange, type = 'text', req
             name={name} 
             id={name} 
             className={`form-control ${error ? "is-invalid" : ""}`}
+            disabled={disabled}
             required={required} 
         />
         {error && (<div className="invalid-feedback">{error}</div>)}

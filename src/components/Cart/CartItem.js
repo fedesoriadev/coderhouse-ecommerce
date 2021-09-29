@@ -13,12 +13,13 @@ const CartItem = ({ item }) => {
         <tr>
             <td width="80">
                 <Link to={'/item/' + item.id}>
-                    <img src={'/img/products/' + item.image} className="img-fluid" alt="" />
+                    <img src={'/img/products/' + item.image} width="80" alt="" />
                 </Link>
             </td>
             <td width="50%"><Link to={'/item/' + item.id}>{item.title}</Link></td>
             <td>${item.price.toLocaleString()}</td>
             <td>{item.count}</td>
+            <td>$ {item.count * item.price}</td>
             <td>
                 <button onClick={removeItem} className="btn" title="Remover del carrito">
                     <i className="bi bi-bag-x"></i>

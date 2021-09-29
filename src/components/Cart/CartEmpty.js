@@ -1,11 +1,26 @@
-import { Link } from "react-router-dom"
+import { Link } from "react-router-dom";
 
-const CartEmpty = () =>
-    <div className="card">
-        <div className="card-body">
-            <h4 className="mb-5">No hay productos en el carrito.</h4>
-            <Link to="/" className="btn btn-primary">Vamos a elegir un café!</Link>
-        </div>
-    </div>
+const CartEmpty = () => (
+    <main>
+        <section className="container">
+            <div className="row">
+                <div className="col-sm-6 mx-auto">
+                    <div className="card">
+                        <div className="card-body">
+                            <div className="alert alert-dark">
+                                <strong>No hay productos en el carrito</strong>
+                            </div>
+                        </div>
+                        <div className="card-footer text-center">
+                            <Link to="/" className="btn btn-primary">
+                                Volver a Home
+                            </Link>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+);
 
-export default CartEmpty
+export default CartEmpty;

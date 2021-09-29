@@ -20,12 +20,12 @@ const ItemDetail = ({item}) => {
     return (
         <div className="card">
             <div className="row g-0">
-                <div className="col-md-6 border-end">
+                <div className="col-sm-6 border-end">
                     <div className="d-flex flex-column justify-content-center p-5">
                         <img src={'/img/products/' + item.image} className="img-fluid" alt="" />
                     </div>
                 </div>
-                <div className="col-md-6">
+                <div className="col-sm-6">
                     <div className="p-3 right-side">
                         <h1>{item.title}</h1>
 
