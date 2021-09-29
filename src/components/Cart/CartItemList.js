@@ -1,8 +1,9 @@
 import CartItem from "./CartItem"
 
-const CartItemList = ({ items, discardCart }) =>
+const CartItemList = ({ items, cartPrice, discardCart }) =>
     <div className="card">
         <div className="card-body">
+        <button onClick={discardCart} className="btn btn-primary">Quitar todos los productos <i className="bi bi-trash"></i></button>
             <table className="table">
                 <thead>
                     <tr>
@@ -20,7 +21,7 @@ const CartItemList = ({ items, discardCart }) =>
             </table>
         </div>
         <div className="card-footer text-center">
-            <button onClick={discardCart} className="btn btn-primary">Quitar todos los productos <i className="bi bi-trash"></i></button>
+            Total: <strong>{ cartPrice }</strong>
         </div>                            
     </div>
 

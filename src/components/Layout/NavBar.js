@@ -17,10 +17,6 @@ const NavBar = () => {
         firestore.collection('categories')
             .get()
             .then(query => {
-                if (query.empty) {
-                    console.log('No categories found!', query)
-                }
-
                 setCategories(query.docs.map(category => {
                     return {id: category.id, ...category.data()}
                 }))

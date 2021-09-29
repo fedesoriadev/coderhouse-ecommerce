@@ -3,9 +3,10 @@ import CartContext from "../contexts/CartContext"
 import NavBar from './Layout/NavBar';
 import ItemListContainer from './Catalog/ItemListContainer'
 import ItemDetailContainer from './Product/ItemDetailContainer'
-import CartContainer from './Checkout/CartContainer';
+import CartContainer from './Cart/CartContainer';
 import PageNotFound from './Pages/PageNotFound';
 import Footer from './Layout/Footer';
+import CheckoutContainer from './Checkout/CheckoutContainer';
 
 const App = () => 
     <CartContext>
@@ -19,7 +20,9 @@ const App = () =>
                 
                 <Route path="/item/:id" component={ItemDetailContainer} />
 
-                <Route path="/cart" component={CartContainer}/>
+                <Route path="/cart" component={CartContainer} />
+
+                <Route path="/checkout" component={CheckoutContainer} />
 
                 <Route component={PageNotFound}/>
             </Switch>
