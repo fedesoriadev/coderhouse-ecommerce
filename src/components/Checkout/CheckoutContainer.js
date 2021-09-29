@@ -24,7 +24,7 @@ const CheckoutContainer = () => {
             .then(({ id }) => {
                 setOrder({id, ...order})
             })
-            .catch(error => console.warn('Error al crear orden: ', error))
+            .catch()
     }
 
     if (cartIsEmpty()) {

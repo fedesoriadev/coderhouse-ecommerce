@@ -30,8 +30,8 @@ const Checkout = ({ checkout }) => {
             label: "Confirmar email",
             type: "email",
             rule: emailRegExp,
+            message: "Email no válido",
             sameAs: "email",
-            message: "La confirmación de email no coincide",
         },
     };
 
@@ -59,11 +59,13 @@ const Checkout = ({ checkout }) => {
 
             if (!field.rule.test(formValues[key])) {
                 errors[key] = field.message;
+
                 isValid = false;
             }
 
             if (field.sameAs && formValues[key] !== formValues[field.sameAs]) {
-                errors[key] = field.message;
+                errors[key] = 'La confirmación de email no coincide';
+
                 isValid = false;
             }
         }
@@ -78,11 +80,10 @@ const Checkout = ({ checkout }) => {
 
         if (isValidForm()) {
             const { repeatemail, ...userFormValues } = formValues;
+
             setCheckingOut(true)
 
-            setTimeout(() => {
-                checkout(userFormValues);
-            }, 5000);
+            checkout(userFormValues);
         }
     };
 

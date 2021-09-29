@@ -7,10 +7,8 @@ const OrderDetail = ({ order }) => {
         <div className="card">
             <div className="card-body">
                 <div className="alert alert-success">
-                    <h3>Muchas gracias por tu compra!</h3>
-                    <p className="lead">
-                        Esperamos que disfrutes de un buen café
-                    </p>
+                    <h5>Muchas gracias por tu compra!</h5>
+                    <p>Esperamos que disfrutes de un buen café</p>
                 </div>
                 <ul class="list-group list-group-flush">
                     <li class="list-group-item">

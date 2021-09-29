@@ -27,9 +27,7 @@ const ItemListContainer = () => {
                 setItems(query.docs.map(item => {
                     return {id: item.id, ...item.data()}
                 }))
-            }).catch(error => {
-                console.warn('Error searching items: ', error)
-            })
+            }).catch()
     }, [categoryId])
 
 

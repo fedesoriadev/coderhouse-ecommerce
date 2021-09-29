@@ -20,9 +20,7 @@ const NavBar = () => {
                 setCategories(query.docs.map(category => {
                     return {id: category.id, ...category.data()}
                 }))
-            }).catch(error => {
-                console.warn('Error searching categories: ', error)
-            })        
+            }).catch()        
     }, [])
 
     return (
